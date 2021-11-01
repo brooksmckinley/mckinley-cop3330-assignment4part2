@@ -1,0 +1,142 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+'Main entrypoint
+
+class App {
+    +{static} void main(String[] args)
+    +void start(Stage primaryStage)
+}
+
+'Views
+package views {
+    class ItemView {
+        +{static} Node createItem(Item item)
+        +{static} Node createEditableItem(Item item)
+    }
+
+    class ListView {
+        +{static} Tab createNewTab()
+    }
+}
+
+'Controllers
+package controllers {
+    class ListController {
+        +void handleAddItem(ActionEvent event)
+    }
+
+    class ItemController {
+        +void handleEditButton(ActionEvent event)
+        +void handleDeleteButton(ActionEvent event)
+        +void handleSave(ActionEvent event)
+    }
+
+    class FileMenuController {
+        +void handleNewList(ActionEvent event)
+        +void handleOpen(ActionEvent event)
+        +void handleOpenMultiple(ActionEvent event)
+        +void handleSave(ActionEvent event)
+        +void handleSaveAll(ActionEvent event)
+        +void handleCloseList(ActionEvent event)
+        +void handleQuit(ActionEvent event)
+    }
+
+    class EditMenuController {
+        +void handleEditListTitle(ActionEvent event)
+    }
+
+    class ViewMenuController {
+        +void handleViewAllItems(ActionEvent event)
+        +void handleViewIncompleteItems(ActionEvent event)
+        +void handleViewCompletedItems(ActionEvent event)
+    }
+
+    class TabController {
+        +void handleTabSwitch(ActionEvent event)
+        +Node getCurrentTab()
+    }
+
+    TabController o-- EditMenuController
+    TabController o-- FileMenuController
+    TabController o-- ViewMenuController
+
+}
+
+'Models
+
+package models {
+    class AppModel {
+        ArrayList<List> toDoLists
+        -int currentList
+
+        +void addList(List toAdd)
+        +void removeList(int index)
+        +List getList(int index)
+        +List getCurrentList()
+        +void setCurrentList(int newList)
+        +void saveAllLists()
+    }
+
+    class List {
+        boolean modified
+        String title
+        File file
+        ArrayList<Item> items
+
+        +void addItem(Item toAdd)
+        +Item getItem(int id)
+        +void setItem(int id, Item replacement)
+        +void setFile(File newFile)
+        +void removeItem(int id)
+        +void saveList()
+        {static} +List loadList(Path filePath)
+        {static} +List[] loadMultipleLists(Path[] filePaths)
+
+        +ArrayList<Item> getAllItems()
+        +ArrayList<Item> getIncompleteItems()
+        +ArrayList<Item> getCompletedItems()
+
+        +boolean getModified()
+        +String getTitle()
+        +void setModified()
+        +void setTitle(String newTitle)
+
+        -int getItemIndex(int id)
+        -String serialize()
+        -{static} List deserialize()
+    }
+
+    class Item {
+        int id
+        String description
+        String dueDate
+        boolean completed
+
+        +int getID()
+        +String getDescription()
+        +String getDueDate()
+        +boolean getCompleted()
+        +void setDescription(String newDescription)
+        +void setDueDate(String newDueDate)
+        +void setCompleted(boolean newCompleted)
+    }
+
+    AppModel *-- List
+    List *-- Item
+}
+
+'Cross-Package dependencies
+AppModel o-- ListController
+AppModel o-- FileMenuController
+AppModel o-- EditMenuController
+AppModel o-- ItemController
+AppModel o-- ListController
+ItemView o-- ListController
+ItemView o-- ItemController
+ListView o-- FileMenuController
+
+App *-- AppModel
+
+
+@enduml

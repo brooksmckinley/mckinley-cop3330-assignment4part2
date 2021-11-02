@@ -2,7 +2,6 @@ package ucf.assignments.controllers;
 
 import javafx.fxml.FXML;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public class FileMenuController {
@@ -48,7 +47,7 @@ public class FileMenuController {
                 for (item in newList) {
                     newTab.add(ItemView.createItem(item));
                 }
-                newTab.select();
+                appModel.addList(list);
             }
         });
         dialog.show();

@@ -27,9 +27,10 @@ package controllers {
     }
 
     class ItemController {
-        +void handleEditButton(ActionEvent event)
-        +void handleDeleteButton(ActionEvent event)
-        +void handleSave(ActionEvent event)
+        +void handleEditButton(Node target, int itemID)
+        +void handleDeleteButton(Node target, int itemID)
+        +void handleSave(Node target, int itemID)
+        +void handleCheck(ActionEvent event, int itemID)
     }
 
     class FileMenuController {
@@ -131,7 +132,6 @@ AppModel o-- ListController
 AppModel o-- FileMenuController
 AppModel o-- EditMenuController
 AppModel o-- ItemController
-AppModel o-- ListController
 ItemView o-- ListController
 ItemView o-- ItemController
 ListView o-- FileMenuController

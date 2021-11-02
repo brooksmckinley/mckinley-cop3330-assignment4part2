@@ -1,5 +1,6 @@
 package ucf.assignments.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.scene.Node;
 
 public class ItemController {
@@ -26,6 +27,13 @@ public class ItemController {
         newItem = new Item(itemID, description, dueDate);
         appModel.getCurrentList().setItem(itemID, newItem);
         target.replace(ItemView.createItem(newItem));
+         */
+    }
+
+    public void handleCheck(ActionEvent event, int itemID) {
+        /*
+        == PSEUDOCODE ==
+        appModel.getCurrentList().getItem(itemID).setCompleted(event.target.checked);
          */
     }
 }

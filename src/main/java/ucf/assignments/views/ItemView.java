@@ -28,6 +28,10 @@ public class ItemView {
         /*
         == PSEUDOCODE ==
         result = new HBox();
+        checkBox = new Checkbox();
+        checkBox.onClick(ItemController.handleCheck(event, itemID));
+        result.add(checkBox);
+
         result.add(new TextField());
         result.add(new DatePicker());
 

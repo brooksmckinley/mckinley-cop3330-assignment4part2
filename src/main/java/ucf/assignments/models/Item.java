@@ -48,7 +48,7 @@ public class Item {
         == PSEUDOCODE ==
         return dueDate;
          */
-        return this.description;
+        return this.dueDate;
     }
 
     public boolean getCompleted() {

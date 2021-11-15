@@ -77,6 +77,10 @@ public class List {
         items.remove(index);
         modified = true;
          */
+        int index = getItemIndex(id);
+        items.remove(index);
+        modified = true;
+
     }
 
     public void saveList() {

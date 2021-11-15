@@ -71,6 +71,13 @@ public class TestRequirements {
         }
         else test has passed
          */
+        List list = new List("Untitled");
+        Item item = new Item("some description", "2021-10-10", false);
+        int id = item.getID();
+        list.addItem(item);
+        Assertions.assertNotNull(list.getItem(id));
+        list.removeItem(item.getID());
+        Assertions.assertNull(list.getItem(id));
     }
 
     @Test

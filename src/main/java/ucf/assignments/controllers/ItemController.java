@@ -5,16 +5,22 @@
 
 package ucf.assignments.controllers;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import ucf.assignments.App;
 import ucf.assignments.models.Item;
 
 public class ItemController {
     private Item item;
 
+    @FXML
+    protected HBox self;
     @FXML
     protected Label taskDescription;
     @FXML
@@ -42,12 +48,14 @@ public class ItemController {
     }
 
     @FXML
-    public void handleDeleteButton(Node target, int itemID) {
+    public void handleDeleteButton(ActionEvent event) {
         /*
         == PSEUDOCODE ==
         appModel.getCurrentList().removeItem(itemID);
-        target.remove();
+        self.parent.remove(self);
          */
+        App.appModel.getCurrentList().removeItem(this.item.getID());
+        ((VBox) self.getParent()).getChildren().remove(self);
     }
 
     @FXML

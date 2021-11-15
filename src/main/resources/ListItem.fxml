@@ -6,7 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox alignment="CENTER_LEFT" prefHeight="6.0" prefWidth="631.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="self" alignment="CENTER_LEFT" prefHeight="6.0" prefWidth="631.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <CheckBox fx:id="checkbox" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
          <HBox.margin>
@@ -20,7 +20,7 @@
          </HBox.margin>
       </Label>
       <Button alignment="TOP_LEFT" mnemonicParsing="false" text="Edit" />
-      <Button mnemonicParsing="false" text="-" />
+      <Button mnemonicParsing="false" onAction="#handleDeleteButton" text="-" />
    </children>
    <padding>
       <Insets left="5.0" right="5.0" />

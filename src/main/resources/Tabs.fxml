@@ -18,7 +18,6 @@
                            <children>
                               <VBox fx:id="listItems" prefHeight="322.4" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <fx:include source="ListItem.fxml" />
                                     <fx:include source="EditableListItem.fxml" />
                                  </children>
                               </VBox>

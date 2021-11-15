@@ -63,33 +63,11 @@ package controllers {
         +void handleViewCompletedItems(ActionEvent event)
     }
 
-    class TabController {
-        #TabPane tabPane
-
-        +void handleTabSwitch(ActionEvent event)
-        +{static} Tab getCurrentTab()
-    }
-
-    TabController o-- EditMenuController
-    TabController o-- FileMenuController
-    TabController o-- ViewMenuController
-
 }
 
 'Models
 
 package models {
-    class AppModel {
-        ArrayList<List> toDoLists
-        -int currentList
-
-        +void addList(List toAdd)
-        +void removeList(int index)
-        +List getList(int index)
-        +List getCurrentList()
-        +void setCurrentList(int newList)
-        +void saveAllLists()
-    }
 
     class List {
         boolean modified
@@ -135,20 +113,19 @@ package models {
         +void setCompleted(boolean newCompleted)
     }
 
-    AppModel *-- List
     List *-- Item
 }
 
 'Cross-Package dependencies
-AppModel o-- ListController
-AppModel o-- FileMenuController
-AppModel o-- EditMenuController
-AppModel o-- ItemController
+List o-- ListController
+List o-- FileMenuController
+List o-- EditMenuController
+List o-- ItemController
 ItemView o-- ListController
 ItemView o-- ItemController
 ListView o-- FileMenuController
 
-App *-- AppModel
+App *-- List
 
 
 @enduml

@@ -9,39 +9,6 @@ import ucf.assignments.models.Item;
 import ucf.assignments.models.List;
 
 public class TestRequirements {
-    @Test
-    public void testAddList() {
-        /*
-        == PSEUDOCODE ==
-        expected = new List("untitled");
-        appModel.addList(expected);
-        list = appModel.getList(first list);
-        assertEqual(expected, actual);
-         */
-    }
-
-    @Test
-    public void testRemoveList() {
-        /*
-        == PSEUDOCODE ==
-        list1 = new List("untitled");
-        list2 = new List("untitled2");
-        appModel.addList(list1);
-        appModel.addList(list2);
-        appModel.removeList(list1);
-        assertEqual(list2, appModel.getList(first list));
-         */
-    }
-
-    @Test
-    public void testEditListTitle() {
-        /*
-        == PSEUDOCODE ==
-        list = new List("some title");
-        list.setTitle("another title");
-        assertEqual("another title", list.getTitle());
-         */
-    }
 
     @Test
     public void testAddItemToList() {
@@ -52,7 +19,7 @@ public class TestRequirements {
         list.add(item);
         assertEqual(item, list.getItem(0));
          */
-        List list = new List("untitled");
+        List list = new List();
         Item item = new Item(0, "description", "2021-10-10", false);
         list.addItem(item);
         Assertions.assertEquals(item, list.getItem(0));
@@ -71,7 +38,7 @@ public class TestRequirements {
         }
         else test has passed
          */
-        List list = new List("Untitled");
+        List list = new List();
         Item item = new Item("some description", "2021-10-10", false);
         int id = item.getID();
         list.addItem(item);
@@ -176,22 +143,6 @@ public class TestRequirements {
     }
 
     @Test
-    public void testSaveAllLists() {
-        /*
-        == PSEUDOCODE ==
-        list1.setFile(new File("list1.list"));
-        list1.add(new Item(3, "some item", "2021-10-10", true));
-        list2.setFile(new File("list2.list"));
-        list2.add(new Item(3, "some other item", "2021-10-10", true));
-        appModel.addList(list1);
-        appModel.addList(list2);
-        appModel.saveAllLists();
-        assertEqual("3|some item|2021-10-10|true", readFile("list1.list"));
-        assertEqual("3|some other item|2021-10-10|true", readFile("list2.list"));
-         */
-    }
-
-    @Test
     public void testLoadList() {
         /*
         == PSEUDOCODE ==
@@ -201,22 +152,6 @@ public class TestRequirements {
         assertEqual("some item", list.getItem(3).description);
         assertEqual("2021-10-10", list.getItem(3).dueDate);
         assertTrue(list.getItem(3).completed);
-         */
-    }
-
-    @Test
-    public void testLoadMultipleLists() {
-        /*
-        == PSEUDOCODE ==
-        writeFile("3|some item|2021-10-10|true", "someList1.list");
-        writeFile("3|some item|2021-10-10|true", "someList2.list");
-        lists = List.loadMultipleLists({ "someList1.list", "someList2.list" });
-        for (list in lists) {
-            assertNotNull(list.getItem(3));
-            assertEqual("some item", list.getItem(3).description);
-            assertEqual("2021-10-10", list.getItem(3).dueDate);
-            assertTrue(list.getItem(3).completed);
-        }
          */
     }
 

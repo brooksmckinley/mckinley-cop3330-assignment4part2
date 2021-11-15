@@ -10,21 +10,15 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class List {
-    private boolean modified;
-    private String title;
     private File file;
     private ArrayList<Item> items;
 
-    public List(String title, File file) {
-        this.modified = false;
-        this.title = title;
+    public List(File file) {
         this.file = file;
         this.items = new ArrayList<>();
     }
 
-    public List(String title) {
-        this.modified = false;
-        this.title = title;
+    public List() {
         this.items = new ArrayList<>();
     }
 
@@ -32,10 +26,8 @@ public class List {
         /*
         == PSEUDOCODE ==
         items.add(toAdd);
-        modified = true;
          */
         this.items.add(toAdd);
-        this.modified = true;
     }
 
     public Item getItem(int id) {
@@ -59,7 +51,6 @@ public class List {
         == PSEUDOCODE ==
         index = getItemIndex(id);
         items.set(index, replacement);
-        modified = true;
          */
     }
 
@@ -75,12 +66,9 @@ public class List {
         == PSEUDOCODE ==
         index = getItemIndex(id);
         items.remove(index);
-        modified = true;
          */
         int index = getItemIndex(id);
         items.remove(index);
-        modified = true;
-
     }
 
     public void saveList() {
@@ -91,7 +79,6 @@ public class List {
         }
         serialized = this.serialize();
         file.writeString(serialized);
-        this.modified = false;
          */
     }
 
@@ -147,36 +134,6 @@ public class List {
         return result;
          */
         return null;
-    }
-
-    public boolean getModified() {
-        /*
-        == PSEUDOCODE ==
-        return modified;
-         */
-        return false;
-    }
-
-    public String getTitle() {
-        /*
-        == PSEUDOCODE ==
-        return title;
-         */
-        return "";
-    }
-
-    public void setModified() {
-        /*
-        == PSEUDOCODE ==
-        modified = true;
-         */
-    }
-
-    public void setTitle(String newTitle) {
-        /*
-        == PSEUDOCODE ==
-        title = newTitle;
-         */
     }
 
     private int getItemIndex(int id) {

@@ -41,7 +41,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="403.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="404.0" prefWidth="683.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <MenuBar prefWidth="640.0" VBox.vgrow="NEVER">
       <menus>
@@ -82,7 +82,7 @@
             <fx:include source="ListControls.fxml" />
          </bottom>
          <center>
-            <fx:include source="Tabs.fxml" />
+            <fx:include source="List.fxml" />
          </center>
       </BorderPane>
   </children>

@@ -51,10 +51,10 @@ public class ItemController {
     public void handleDeleteButton(ActionEvent event) {
         /*
         == PSEUDOCODE ==
-        appModel.getCurrentList().removeItem(itemID);
+        appList.removeItem(itemID);
         self.parent.remove(self);
          */
-        App.appModel.getCurrentList().removeItem(this.item.getID());
+        App.appList.removeItem(this.item.getID());
         ((VBox) self.getParent()).getChildren().remove(self);
     }
 
@@ -65,7 +65,7 @@ public class ItemController {
         description = target.textField.content;
         dueDate = target.dueDateField.content;
         newItem = new Item(itemID, description, dueDate);
-        appModel.getCurrentList().setItem(itemID, newItem);
+        appList.setItem(itemID, newItem);
         target.replace(ItemView.createItem(newItem));
          */
     }
@@ -74,7 +74,7 @@ public class ItemController {
     public void handleCheck(ActionEvent event, int itemID) {
         /*
         == PSEUDOCODE ==
-        appModel.getCurrentList().getItem(itemID).setCompleted(event.target.checked);
+        appList.getItem(itemID).setCompleted(event.target.checked);
          */
     }
 }

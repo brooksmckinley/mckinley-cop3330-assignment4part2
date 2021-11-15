@@ -10,14 +10,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ucf.assignments.models.AppModel;
+import ucf.assignments.models.List;
 
 import java.util.Objects;
 
 
 public class App extends Application {
 
-    public static AppModel appModel = new AppModel();
+    public static List appList = new List();
     public static Parent root;
 
     @Override
@@ -25,7 +25,7 @@ public class App extends Application {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/application.fxml")));
 
 
-        Scene scene = new Scene(root, 640, 480);
+        Scene scene = new Scene(root, 800, 600);
 
         primaryStage.setTitle("To-Do List Application");
         primaryStage.setScene(scene);

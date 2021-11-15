@@ -30,7 +30,7 @@ public class ListController {
         dueDate = dueDateField.getContent();
         completed = false;
         item = new Item(description, dueDate, completed);
-        appModel.getCurrentList().addItem(item);
+        appList.addItem(item);
         currentTab.add(ItemView.createItem(item));
         textField = "";
         dueDateField = "";
@@ -46,12 +46,9 @@ public class ListController {
         }
         Item item = new Item(description, dueDate, false);
 
-        App.appModel.getCurrentList().addItem(item);
-        System.out.println(TabController.getCurrentTab());
-        VBox listItems = (VBox) Objects.requireNonNull(TabController.getCurrentTab())
-                .getContent()
+        App.appList.addItem(item);
+        VBox listItems = (VBox) Objects.requireNonNull(App.root)
                 .lookup("#listItems");
-        System.out.println(listItems);
         listItems.getChildren().add(ItemView.createItem(item));
         textField.setText("");
         datePicker.setValue(null);

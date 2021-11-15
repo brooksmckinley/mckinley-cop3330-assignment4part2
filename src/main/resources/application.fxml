@@ -32,12 +32,7 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioMenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -45,36 +40,9 @@
   <children>
     <MenuBar prefWidth="640.0" VBox.vgrow="NEVER">
       <menus>
-            <Menu mnemonicParsing="false" text="File">
-              <items>
-                <MenuItem mnemonicParsing="false" text="New List" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Open" />
-                  <MenuItem mnemonicParsing="false" text="Open Multiple" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Save" />
-                  <MenuItem mnemonicParsing="false" text="Save All" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Close List" />
-                  <MenuItem mnemonicParsing="false" text="Quit" />
-              </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Edit">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Edit List Title" />
-              </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="View">
-               <items>
-                  <RadioMenuItem mnemonicParsing="false" selected="true" text="View All Items">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="viewitems" />
-                     </toggleGroup>
-                  </RadioMenuItem>
-                  <RadioMenuItem mnemonicParsing="false" text="View Incomplete Items Only" toggleGroup="$viewitems" />
-                  <RadioMenuItem mnemonicParsing="false" text="View Completed Items Only" toggleGroup="$viewitems" />
-               </items>
-            </Menu>
+            <fx:include source="FileMenu.fxml" />
+            <fx:include source="EditMenu.fxml" />
+            <fx:include source="ViewMenu.fxml" />
       </menus>
     </MenuBar>
       <BorderPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">

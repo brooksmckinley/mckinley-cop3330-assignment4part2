@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.ToggleGroup?>
+
+<Menu mnemonicParsing="false" text="View" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <items>
+      <RadioMenuItem mnemonicParsing="false" selected="true" text="View All Items">
+         <toggleGroup>
+            <ToggleGroup fx:id="viewitems" />
+         </toggleGroup>
+      </RadioMenuItem>
+      <RadioMenuItem mnemonicParsing="false" text="View Incomplete Items Only" toggleGroup="$viewitems" />
+      <RadioMenuItem mnemonicParsing="false" text="View Completed Items Only" toggleGroup="$viewitems" />
+   </items>
+</Menu>

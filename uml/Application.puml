@@ -14,10 +14,6 @@ package views {
         +{static} Node createItem(Item item)
         +{static} Node createEditableItem(Item item)
     }
-
-    class ListView {
-        +{static} Tab createNewTab()
-    }
 }
 
 'Controllers
@@ -44,17 +40,13 @@ package controllers {
     }
 
     class FileMenuController {
-        +void handleNewList(ActionEvent event)
         +void handleOpen(ActionEvent event)
-        +void handleOpenMultiple(ActionEvent event)
         +void handleSave(ActionEvent event)
-        +void handleSaveAll(ActionEvent event)
-        +void handleCloseList(ActionEvent event)
         +void handleQuit(ActionEvent event)
     }
 
     class EditMenuController {
-        +void handleEditListTitle(ActionEvent event)
+        +void handleClearList()
     }
 
     class ViewMenuController {
@@ -70,8 +62,6 @@ package controllers {
 package models {
 
     class List {
-        boolean modified
-        String title
         File file
         ArrayList<Item> items
 
@@ -88,9 +78,6 @@ package models {
         +ArrayList<Item> getIncompleteItems()
         +ArrayList<Item> getCompletedItems()
 
-        +boolean getModified()
-        +String getTitle()
-        +void setModified()
         +void setTitle(String newTitle)
 
         -int getItemIndex(int id)

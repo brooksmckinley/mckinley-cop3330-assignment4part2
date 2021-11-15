@@ -48,6 +48,36 @@ public class TestRequirements {
     }
 
     @Test
+    public void testClearList() {
+        /*
+        == PSEUDOCODE ==
+        list = new List();
+        item = new Item(some arbitrary data);
+        item2 = new Item(some arbitrary data);
+        item3 = new Item(some arbitrary data);
+        list.add(item);
+        list.add(item2);
+        list.add(item3);
+        assert(list.size() == 3);
+        list.clearList();
+        assert(list.get(item, item2, item3) == null);
+         */
+        List list = new List();
+        Item item = new Item("asjdklasd", "2021-10-10", false);
+        Item item2 = new Item("uureureuri", "2021-10-11", false);
+        Item item3 = new Item("nfffffjfjfjjfjf", "2021-10-12", true);
+        list.addItem(item);
+        list.addItem(item2);
+        list.addItem(item3);
+        Assertions.assertEquals(3, list.getAllItems().size());
+        list.clearList();
+        Assertions.assertEquals(0, list.getAllItems().size());
+        Assertions.assertNull(list.getItem(item.getID()));
+        Assertions.assertNull(list.getItem(item2.getID()));
+        Assertions.assertNull(list.getItem(item3.getID()));
+    }
+
+    @Test
     public void testEditItemDescription() {
         /*
         == PSEUDOCODE ==

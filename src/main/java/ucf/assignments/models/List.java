@@ -71,6 +71,16 @@ public class List {
         items.remove(index);
     }
 
+    public void clearList() {
+        /*
+        == PSEUDOCODE ==
+        for (item in items) {
+            items.remove(item);
+        }
+         */
+        items.clear();
+    }
+
     public void saveList() {
         /*
         == PSEUDOCODE ==
@@ -102,15 +112,15 @@ public class List {
         return null;
     }
 
-    public static ArrayList<Item> getAllItems() {
+    public ArrayList<Item> getAllItems() {
         /*
         == PSUEDOCODE ==
         return items;
          */
-        return null;
+        return this.items;
     }
 
-    public static ArrayList<Item> getIncompleteItems() {
+    public ArrayList<Item> getIncompleteItems() {
         /*
         == PSUEDOCODE ==
         for (item in items) {
@@ -123,7 +133,7 @@ public class List {
         return null;
     }
 
-    public static ArrayList<Item> getCompletedItems() {
+    public ArrayList<Item> getCompletedItems() {
         /*
         == PSEUDOCODE ==
         for (item in items) {

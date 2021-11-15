@@ -28,15 +28,29 @@ package controllers {
     class ItemController {
         -Item item
 
+        #HBox self
         #Label taskDescription
         #Label dueDate
         #CheckBox checkBox
 
         +void initialize()
-        +void handleEditButton(Node target, int itemID)
-        +void handleDeleteButton(Node target, int itemID)
-        +void handleSave(Node target, int itemID)
-        +void handleCheck(ActionEvent event, int itemID)
+        +void handleEditButton(ActionEvent event)
+        +void handleDeleteButton(ActionEvent event)
+        +void handleCheck(ActionEvent event)
+    }
+
+    class EditableListItemController {
+        -Item item
+
+        #HBox self
+        #Label taskDescription
+        #Label dueDate
+        #CheckBox checkBox
+
+        +void initialize()
+        +void handleSave(ActionEvent event)
+        +void handleCheck(ActionEvent event)
+        +void handleDeleteButton(ActionEvent event)
     }
 
     class FileMenuController {
@@ -72,7 +86,6 @@ package models {
         +void removeItem(int id)
         +void saveList()
         {static} +List loadList(Path filePath)
-        {static} +List[] loadMultipleLists(Path[] filePaths)
 
         +ArrayList<Item> getAllItems()
         +ArrayList<Item> getIncompleteItems()

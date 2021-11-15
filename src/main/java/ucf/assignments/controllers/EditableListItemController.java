@@ -52,8 +52,9 @@ public class EditableListItemController {
     public void handleCheck(ActionEvent event) {
         /*
         == PSEUDOCODE ==
-        appList.getItem(itemID).setCompleted(event.target.checked);
+        item.setCompleted(event.target.checked);
          */
+        item.setCompleted(checkBox.isSelected());
     }
 
     @FXML

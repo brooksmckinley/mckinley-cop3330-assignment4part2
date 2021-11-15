@@ -8,7 +8,7 @@
 
 <HBox fx:id="self" alignment="CENTER_LEFT" prefHeight="6.0" prefWidth="631.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <CheckBox fx:id="checkbox" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+      <CheckBox fx:id="checkBox" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleCheck">
          <HBox.margin>
             <Insets right="5.0" />
          </HBox.margin>

@@ -27,7 +27,7 @@ public class ItemController {
     @FXML
     protected Label dueDate;
     @FXML
-    protected CheckBox checkbox;
+    protected CheckBox checkBox;
 
     public ItemController(Item item) {
         this.item = item;
@@ -43,7 +43,7 @@ public class ItemController {
          */
         taskDescription.setText(item.getDescription());
         dueDate.setText(item.getDueDate());
-        checkbox.setSelected(item.getCompleted());
+        checkBox.setSelected(item.getCompleted());
     }
 
     @FXML
@@ -68,10 +68,11 @@ public class ItemController {
     }
 
     @FXML
-    public void handleCheck(ActionEvent event, int itemID) {
+    public void handleCheck(ActionEvent event) {
         /*
         == PSEUDOCODE ==
-        appList.getItem(itemID).setCompleted(event.target.checked);
+        item.setCompleted(event.target.checked);
          */
+        item.setCompleted(checkBox.isSelected());
     }
 }

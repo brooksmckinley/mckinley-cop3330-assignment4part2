@@ -110,7 +110,14 @@ public class TestRequirements {
         item = new Item(false);
         item.setCompleted(true);
         assertTrue(item.completed);
+        item.setCompleted(false);
+        assertFalse(item.completed);
         */
+        Item item = new Item("test description", "2021-10-10", false);
+        item.setCompleted(true);
+        Assertions.assertTrue(item.getCompleted());
+        item.setCompleted(false);
+        Assertions.assertFalse(item.getCompleted());
     }
 
     @Test

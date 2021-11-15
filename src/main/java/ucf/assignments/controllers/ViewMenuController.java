@@ -5,8 +5,16 @@
 
 package ucf.assignments.controllers;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.layout.VBox;
+import ucf.assignments.App;
+import ucf.assignments.models.Item;
+import ucf.assignments.views.ItemView;
+
+import java.util.Objects;
 
 public class ViewMenuController {
 
@@ -14,24 +22,25 @@ public class ViewMenuController {
     public void handleViewAllItems(ActionEvent event) {
         /*
         == PSEUDOCODE ==
-        for (i, tab in openTabs) {
-            tab.clearList();
-            for (item in appModel.getList(i).getAllItems()) {
-                tab.add(ItemView.createItem(item));
-            }
+        screen.clearList();
+        for (item in appList.getAllItems()) {
+            screen.add(ItemView.createItem(item));
         }
          */
+        ObservableList<Node> screen = getListItems();
+        screen.clear();
+        for (Item item : App.appList.getAllItems()) {
+            screen.add(ItemView.createItem(item));
+        }
     }
 
     @FXML
     public void handleViewIncompleteItems(ActionEvent event) {
         /*
         == PSEUDOCODE ==
-        for (i, tab in openTabs) {
-            tab.clearList();
-            for (item in appModel.getList(i).getIncompleteItems()) {
-                tab.add(ItemView.createItem(item));
-            }
+        screen.clearList();
+        for (item in appList.getIncompleteItems()) {
+            screen.add(ItemView.createItem(item));
         }
          */
     }
@@ -40,12 +49,16 @@ public class ViewMenuController {
     public void handleViewCompletedItems(ActionEvent event) {
         /*
         == PSEUDOCODE ==
-        for (i, tab in openTabs) {
-            tab.clearList();
-            for (item in appModel.getList(i).getCompletedItems()) {
-                tab.add(ItemView.createItem(item));
-            }
+        screen.clearList();
+        for (item in appList.getCompletedItems()) {
+            screen.add(ItemView.createItem(item));
         }
          */
+    }
+
+    protected static ObservableList<Node> getListItems() {
+        VBox listItems = (VBox) Objects.requireNonNull(App.root)
+                .lookup("#listItems");
+        return listItems.getChildren();
     }
 }

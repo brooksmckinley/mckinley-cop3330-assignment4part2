@@ -4,14 +4,14 @@
 <?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.ToggleGroup?>
 
-<Menu mnemonicParsing="false" text="View" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Menu mnemonicParsing="false" text="View" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.controllers.ViewMenuController">
    <items>
-      <RadioMenuItem mnemonicParsing="false" selected="true" text="View All Items">
+      <RadioMenuItem mnemonicParsing="false" onAction="#handleViewAllItems" selected="true" text="View All Items">
          <toggleGroup>
             <ToggleGroup fx:id="viewitems" />
          </toggleGroup>
       </RadioMenuItem>
-      <RadioMenuItem mnemonicParsing="false" text="View Incomplete Items Only" toggleGroup="$viewitems" />
-      <RadioMenuItem mnemonicParsing="false" text="View Completed Items Only" toggleGroup="$viewitems" />
+      <RadioMenuItem mnemonicParsing="false" onAction="#handleViewIncompleteItems" text="View Incomplete Items Only" toggleGroup="$viewitems" />
+      <RadioMenuItem mnemonicParsing="false" onAction="#handleViewCompletedItems" text="View Completed Items Only" toggleGroup="$viewitems" />
    </items>
 </Menu>

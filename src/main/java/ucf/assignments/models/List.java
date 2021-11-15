@@ -130,7 +130,13 @@ public class List {
         }
         return result;
          */
-        return null;
+        ArrayList<Item> result = new ArrayList<>();
+        for (Item item : this.items) {
+            if (!item.getCompleted()) {
+                result.add(item);
+            }
+        }
+        return result;
     }
 
     public ArrayList<Item> getCompletedItems() {
@@ -143,7 +149,13 @@ public class List {
         }
         return result;
          */
-        return null;
+        ArrayList<Item> result = new ArrayList<>();
+        for (Item item : this.items) {
+            if (!item.getCompleted()) {
+                result.add(item);
+            }
+        }
+        return result;
     }
 
     private int getItemIndex(int id) {

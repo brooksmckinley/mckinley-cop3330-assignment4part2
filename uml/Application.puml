@@ -67,6 +67,7 @@ package controllers {
         +void handleViewAllItems(ActionEvent event)
         +void handleViewIncompleteItems(ActionEvent event)
         +void handleViewCompletedItems(ActionEvent event)
+        #{static} ObservableList<Node> getListItems()
     }
 
 }

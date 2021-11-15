@@ -52,7 +52,7 @@ public class ItemController {
         == PSEUDOCODE ==
         target.replace(ItemView.createEditableItem(target, itemID));
         */
-        ObservableList itemsList = ((VBox) self.getParent()).getChildren();
+        ObservableList<Node> itemsList = ((VBox) self.getParent()).getChildren();
         itemsList.set(itemsList.indexOf(self), ItemView.createEditableItem(this.item));
     }
 
@@ -72,7 +72,14 @@ public class ItemController {
         /*
         == PSEUDOCODE ==
         item.setCompleted(event.target.checked);
+        if (current state is view incomplete only) {
+            self.parent.remove(self);
+        }
          */
         item.setCompleted(checkBox.isSelected());
+        ViewMenuController.CurrentState currentState = ViewMenuController.getCurrentState();
+        if (currentState == ViewMenuController.CurrentState.VIEW_INCOMPLETE_ITEMS) {
+            ((VBox) self.getParent()).getChildren().remove(self);
+        }
     }
 }

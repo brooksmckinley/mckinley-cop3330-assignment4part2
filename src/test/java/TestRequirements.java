@@ -168,6 +168,18 @@ public class TestRequirements {
         assertFalse(incompleteItems.contains(item2));
         assertFalse(incompleteItems.contains(item3));
          */
+        Item item1 = new Item(0, "some item 1", "2021-10-10", false);
+        Item item2 = new Item(1, "some item 2", "2021-10-10", true);
+        Item item3 = new Item(2, "some item 3", "2021-10-10", true);
+        List list = new List();
+        list.addItem(item1);
+        list.addItem(item2);
+        list.addItem(item3);
+
+        ArrayList<Item> incompleteItems = list.getIncompleteItems();
+        Assertions.assertTrue(incompleteItems.contains(item1));
+        Assertions.assertFalse(incompleteItems.contains(item2));
+        Assertions.assertFalse(incompleteItems.contains(item3));
     }
 
     @Test

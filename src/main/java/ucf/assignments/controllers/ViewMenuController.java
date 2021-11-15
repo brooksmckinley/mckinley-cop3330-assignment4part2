@@ -18,6 +18,14 @@ import java.util.Objects;
 
 public class ViewMenuController {
 
+    public enum CurrentState {
+        VIEW_ALL_ITEMS,
+        VIEW_INCOMPLETE_ITEMS,
+        VIEW_COMPLETED_ITEMS,
+    }
+
+    private static CurrentState state = CurrentState.VIEW_ALL_ITEMS;
+
     @FXML
     public void handleViewAllItems(ActionEvent event) {
         /*
@@ -28,6 +36,7 @@ public class ViewMenuController {
         }
          */
         ObservableList<Node> screen = getListItems();
+        state = CurrentState.VIEW_ALL_ITEMS;
         screen.clear();
         for (Item item : App.appList.getAllItems()) {
             screen.add(ItemView.createItem(item));
@@ -43,6 +52,12 @@ public class ViewMenuController {
             screen.add(ItemView.createItem(item));
         }
          */
+        ObservableList<Node> screen = getListItems();
+        state = CurrentState.VIEW_INCOMPLETE_ITEMS;
+        screen.clear();
+        for (Item item : App.appList.getIncompleteItems()) {
+            screen.add(ItemView.createItem(item));
+        }
     }
 
     @FXML
@@ -56,9 +71,14 @@ public class ViewMenuController {
          */
     }
 
+    public static CurrentState getCurrentState() {
+        return state;
+    }
+
     protected static ObservableList<Node> getListItems() {
         VBox listItems = (VBox) Objects.requireNonNull(App.root)
                 .lookup("#listItems");
         return listItems.getChildren();
     }
+
 }

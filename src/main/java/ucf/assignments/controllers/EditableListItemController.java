@@ -8,6 +8,7 @@ package ucf.assignments.controllers;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -53,8 +54,15 @@ public class EditableListItemController {
         /*
         == PSEUDOCODE ==
         item.setCompleted(event.target.checked);
+        if (current state is view incomplete only) {
+            self.parent.remove(self);
+        }
          */
         item.setCompleted(checkBox.isSelected());
+        ViewMenuController.CurrentState currentState = ViewMenuController.getCurrentState();
+        if (currentState == ViewMenuController.CurrentState.VIEW_INCOMPLETE_ITEMS) {
+            ((VBox) self.getParent()).getChildren().remove(self);
+        }
     }
 
     @FXML
@@ -67,7 +75,7 @@ public class EditableListItemController {
          */
         item.setDescription(textField.getText());
         item.setDueDate(datePicker.getValue().toString());
-        ObservableList itemsList = ((VBox) self.getParent()).getChildren();
+        ObservableList<Node> itemsList = ((VBox) self.getParent()).getChildren();
         itemsList.set(itemsList.indexOf(self), ItemView.createItem(this.item));
     }
 

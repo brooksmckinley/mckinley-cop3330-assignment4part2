@@ -64,12 +64,22 @@ package controllers {
     }
 
     class ViewMenuController {
+
+
         +void handleViewAllItems(ActionEvent event)
         +void handleViewIncompleteItems(ActionEvent event)
         +void handleViewCompletedItems(ActionEvent event)
+        #{static} CurrentState getCurrentState()
         #{static} ObservableList<Node> getListItems()
     }
 
+    enum ViewMenuController.CurrentState {
+        VIEW_ALL_ITEMS
+        VIEW_INCOMPLETE_ITEMS
+        VIEW_COMPLETED_ITEMS
+    }
+
+    ViewMenuController *-- ViewMenuController.CurrentState
 }
 
 'Models

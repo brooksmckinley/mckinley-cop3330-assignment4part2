@@ -15,8 +15,17 @@ public class List {
     private File file;
     private ArrayList<Item> items;
 
-    public List() {
+    public List(String title, File file) {
+        this.modified = false;
+        this.title = title;
+        this.file = file;
+        this.items = new ArrayList<>();
+    }
 
+    public List(String title) {
+        this.modified = false;
+        this.title = title;
+        this.items = new ArrayList<>();
     }
 
     public void addItem(Item toAdd) {
@@ -25,15 +34,24 @@ public class List {
         items.add(toAdd);
         modified = true;
          */
+        this.items.add(toAdd);
+        this.modified = true;
     }
 
     public Item getItem(int id) {
         /*
         == PSUEDOCODE ==
         index = getItemIndex(id);
-        items.get(index);
+        if (index != -1)
+            items.get(index);
+        else return null;
          */
-        return null;
+        int index = getItemIndex(id);
+        if (index == -1) {
+            return null;
+        } else {
+            return items.get(id);
+        }
     }
 
     public void setItem(int id, Item replacement) {
@@ -167,7 +185,12 @@ public class List {
         }
         return -1;
          */
-        return 0;
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getID() == id) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     private String serialize() {

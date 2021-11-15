@@ -6,9 +6,34 @@
 package ucf.assignments.controllers;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import ucf.assignments.models.Item;
 
 public class ItemController {
+    private Item item;
+
+    @FXML
+    protected Label taskDescription;
+    @FXML
+    protected Label dueDate;
+    @FXML
+    protected CheckBox checkbox;
+
+    public ItemController(Item item) {
+        this.item = item;
+    }
+
+    @FXML
+    public void initialize() {
+        taskDescription.setText(item.getDescription());
+        dueDate.setText(item.getDueDate());
+        checkbox.setSelected(item.getCompleted());
+    }
+
+    @FXML
     public void handleEditItem(Node target, int itemID) {
         /*
         == PSEUDOCODE ==
@@ -16,6 +41,7 @@ public class ItemController {
         */
     }
 
+    @FXML
     public void handleDeleteButton(Node target, int itemID) {
         /*
         == PSEUDOCODE ==
@@ -24,6 +50,7 @@ public class ItemController {
          */
     }
 
+    @FXML
     public void handleSave(Node target, int itemID) {
         /*
         == PSEUDOCODE ==
@@ -35,6 +62,7 @@ public class ItemController {
          */
     }
 
+    @FXML
     public void handleCheck(ActionEvent event, int itemID) {
         /*
         == PSEUDOCODE ==

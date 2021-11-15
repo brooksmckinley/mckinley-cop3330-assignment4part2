@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox prefHeight="23.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.controllers.ListController">
+   <children>
+      <TextField fx:id="textField" promptText="Task Description" HBox.hgrow="ALWAYS" />
+      <DatePicker fx:id="datePicker" promptText="Due Date" />
+      <Button mnemonicParsing="false" onAction="#handleAddItem" text="+" />
+   </children>
+</HBox>

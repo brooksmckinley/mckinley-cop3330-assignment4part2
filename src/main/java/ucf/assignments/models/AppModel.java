@@ -13,14 +13,18 @@ public class AppModel {
     private int currentList;
 
     public AppModel() {
-
+        // Create lists and start with an initial untitled list
+        this.toDoLists = new ArrayList<>();
+        this.toDoLists.add(new List("Untitled"));
+        this.currentList = 0;
     }
 
     public void addList(List toAdd) {
         /*
         == PSEUDOCODE ==
-        todoLists.add(new List())
+        todoLists.add(toAdd)
          */
+        toDoLists.add(toAdd);
     }
 
     public void removeList(int index) {
@@ -50,7 +54,7 @@ public class AppModel {
         == PSEUDOCODE ==
         toDoLists.get(this.currentList);
          */
-        return null;
+        return toDoLists.get(this.currentList);
     }
 
     public void saveAllLists() {

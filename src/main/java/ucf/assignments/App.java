@@ -17,11 +17,13 @@ import java.util.Objects;
 
 public class App extends Application {
 
-    public static AppModel appModel;
+    public static AppModel appModel = new AppModel();
+    public static Parent root;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/application.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/application.fxml")));
+
 
         Scene scene = new Scene(root, 640, 480);
 

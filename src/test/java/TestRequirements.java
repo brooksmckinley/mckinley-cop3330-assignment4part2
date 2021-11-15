@@ -3,7 +3,10 @@
  *  Copyright 2021 Brooks McKinley
  */
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import ucf.assignments.models.Item;
+import ucf.assignments.models.List;
 
 public class TestRequirements {
     @Test
@@ -45,10 +48,14 @@ public class TestRequirements {
         /*
         == PSEUDOCODE ==
         list = new List("untitled");
-        item = new Item(0, "description", "2021-10-10", false)
+        item = new Item("description", "2021-10-10", false)
         list.add(item);
         assertEqual(item, list.getItem(0));
          */
+        List list = new List("untitled");
+        Item item = new Item(0, "description", "2021-10-10", false);
+        list.addItem(item);
+        Assertions.assertEquals(item, list.getItem(0));
     }
 
     @Test

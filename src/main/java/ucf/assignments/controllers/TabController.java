@@ -7,10 +7,13 @@ package ucf.assignments.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import ucf.assignments.App;
 
 public class TabController {
-    private static Node currentTab = null;
+    @FXML
+    protected TabPane tabPane;
 
     @FXML
     public void handleTabSwitch(ActionEvent event) {
@@ -25,14 +28,22 @@ public class TabController {
          */
     }
 
-    public static Node getCurrentTab() {
+    public static Tab getCurrentTab() {
         /*
         == PSEUDOCODE ==
-        if (tab is null) {
-            return first tab;
+        for (tab in tabs) {
+            if (tab.isSelected()) {
+                return tab;
+            }
         }
-        return currentTab;
+        // This should never get here
+        return null;
          */
+        for (Tab tab : ((TabPane) App.root.lookup("#tabPane")).getTabs()) {
+            if (tab.isSelected()) {
+                return tab;
+            }
+        }
         return null;
     }
 }

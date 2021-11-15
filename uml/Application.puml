@@ -23,10 +23,20 @@ package views {
 'Controllers
 package controllers {
     class ListController {
+        #TextField textField
+        #DatePicker datePicker
+
         +void handleAddItem(ActionEvent event)
     }
 
     class ItemController {
+        -Item item
+
+        #Label taskDescription
+        #Label dueDate
+        #CheckBox checkBox
+
+        +void initialize()
         +void handleEditButton(Node target, int itemID)
         +void handleDeleteButton(Node target, int itemID)
         +void handleSave(Node target, int itemID)
@@ -54,8 +64,10 @@ package controllers {
     }
 
     class TabController {
+        #TabPane tabPane
+
         +void handleTabSwitch(ActionEvent event)
-        +Node getCurrentTab()
+        +{static} Tab getCurrentTab()
     }
 
     TabController o-- EditMenuController

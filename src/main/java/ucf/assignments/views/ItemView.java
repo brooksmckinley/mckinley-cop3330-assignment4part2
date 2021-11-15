@@ -5,27 +5,32 @@
 
 package ucf.assignments.views;
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import ucf.assignments.App;
+import ucf.assignments.controllers.ItemController;
 import ucf.assignments.models.Item;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.Objects;
+
 public class ItemView {
-    public static Node createItem(Item toCreate) {
+    public static Node createItem(Item item) {
         /*
         == PSEUDOCODE ==
-        result = new HBox();
-        result.add(new Label(item.description));
-        result.add(new Label(item.dueDate));
-
-        editButton = new Button("Edit");
-        editButton.onClick(ItemController.handleEdit(result, toCreate.id));
-        result.add(editButton);
-
-        deleteButton = new Button("-");
-        deleteButton.onClick(ItemController.handleDelete(result, toCreate.id));
-        result.add(deleteButton);
-
+        result = loadFromFXML("ListItem.fxml");
+        result.controller = new ItemController(item);
         return result;
          */
+        URL listItemResource = Objects.requireNonNull(App.class.getResource("/ListItem.fxml"));
+        try {
+            FXMLLoader loader = new FXMLLoader(listItemResource);
+            loader.setController(new ItemController(item));
+            return loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 

@@ -6,17 +6,33 @@
 package ucf.assignments.models;
 
 public class Item {
-    private int id;
+
+    private static Integer lastID = 0;
+    private final int id;
     private String description;
     private String dueDate;
     private boolean completed;
+
+    public Item(String description, String dueDate, boolean completed) {
+        this.id = lastID++;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.completed = completed;
+    }
+
+    public Item(int id, String description, String dueDate, boolean completed) {
+        this.id = id;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.completed = completed;
+    }
 
     public int getID() {
         /*
         == PSEUDOCODE ==
         return id;
          */
-        return 0;
+        return this.id;
     }
 
     public String getDescription() {
@@ -24,7 +40,7 @@ public class Item {
         == PSEUDOCODE ==
         return description;
          */
-        return "";
+        return this.description;
     }
 
     public String getDueDate() {
@@ -32,7 +48,7 @@ public class Item {
         == PSEUDOCODE ==
         return dueDate;
          */
-        return "";
+        return this.description;
     }
 
     public boolean getCompleted() {
@@ -40,7 +56,7 @@ public class Item {
         == PSEUDOCODE ==
         return completed;
          */
-        return false;
+        return this.completed;
     }
 
     public void setDescription(String newDescription) {

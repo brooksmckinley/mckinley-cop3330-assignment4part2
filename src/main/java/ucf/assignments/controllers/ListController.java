@@ -31,7 +31,9 @@ public class ListController {
         completed = false;
         item = new Item(description, dueDate, completed);
         appList.addItem(item);
-        currentTab.add(ItemView.createItem(item));
+        if (view state is not set to only completed items) {
+            currentVisualList.add(ItemView.createItem(item));
+        }
         textField = "";
         dueDateField = "";
          */
@@ -47,10 +49,14 @@ public class ListController {
         Item item = new Item(description, dueDate, false);
 
         App.appList.addItem(item);
+
         VBox listItems = (VBox) Objects.requireNonNull(App.root)
                 .lookup("#listItems");
-        System.out.println(ItemView.createItem(item));
-        listItems.getChildren().add(ItemView.createItem(item));
+        ViewMenuController.CurrentState currentState = ViewMenuController.getCurrentState();
+        if (currentState != ViewMenuController.CurrentState.VIEW_COMPLETED_ITEMS) {
+            listItems.getChildren().add(ItemView.createItem(item));
+        }
+
         textField.setText("");
         datePicker.setValue(null);
     }

@@ -151,7 +151,7 @@ public class List {
          */
         ArrayList<Item> result = new ArrayList<>();
         for (Item item : this.items) {
-            if (!item.getCompleted()) {
+            if (item.getCompleted()) {
                 result.add(item);
             }
         }

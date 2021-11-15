@@ -69,6 +69,12 @@ public class ViewMenuController {
             screen.add(ItemView.createItem(item));
         }
          */
+        ObservableList<Node> screen = getListItems();
+        state = CurrentState.VIEW_COMPLETED_ITEMS;
+        screen.clear();
+        for (Item item : App.appList.getCompletedItems()) {
+            screen.add(ItemView.createItem(item));
+        }
     }
 
     public static CurrentState getCurrentState() {
@@ -76,6 +82,11 @@ public class ViewMenuController {
     }
 
     protected static ObservableList<Node> getListItems() {
+        /*
+        == PSEUDOCODE ==
+        list = lookup("#listItems");
+        return list;
+         */
         VBox listItems = (VBox) Objects.requireNonNull(App.root)
                 .lookup("#listItems");
         return listItems.getChildren();

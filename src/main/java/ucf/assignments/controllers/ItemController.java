@@ -72,13 +72,17 @@ public class ItemController {
         /*
         == PSEUDOCODE ==
         item.setCompleted(event.target.checked);
-        if (current state is view incomplete only) {
+        if (current state is view incomplete and item is being checked or view completed and
+            item is being unchecked) {
             self.parent.remove(self);
         }
          */
-        item.setCompleted(checkBox.isSelected());
+        boolean checked = checkBox.isSelected();
+        item.setCompleted(checked);
         ViewMenuController.CurrentState currentState = ViewMenuController.getCurrentState();
-        if (currentState == ViewMenuController.CurrentState.VIEW_INCOMPLETE_ITEMS) {
+
+        if ((currentState == ViewMenuController.CurrentState.VIEW_INCOMPLETE_ITEMS && checked) ||
+            (currentState == ViewMenuController.CurrentState.VIEW_COMPLETED_ITEMS && !checked)) {
             ((VBox) self.getParent()).getChildren().remove(self);
         }
     }

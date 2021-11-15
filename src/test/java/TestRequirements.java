@@ -198,6 +198,18 @@ public class TestRequirements {
         assertTrue(completedItems.contains(item2));
         assertTrue(completedItems.contains(item3));
          */
+        Item item1 = new Item(0, "some item 1", "2021-10-10", false);
+        Item item2 = new Item(1, "some item 2", "2021-10-10", true);
+        Item item3 = new Item(2, "some item 3", "2021-10-10", true);
+        List list = new List();
+        list.addItem(item1);
+        list.addItem(item2);
+        list.addItem(item3);
+
+        ArrayList<Item> completedItems = list.getCompletedItems();
+        Assertions.assertFalse(completedItems.contains(item1));
+        Assertions.assertTrue(completedItems.contains(item2));
+        Assertions.assertTrue(completedItems.contains(item3));
     }
 
     @Test

@@ -42,7 +42,7 @@ public class List {
         if (index == -1) {
             return null;
         } else {
-            return items.get(id);
+            return items.get(index);
         }
     }
 

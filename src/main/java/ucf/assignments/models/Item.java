@@ -64,6 +64,7 @@ public class Item {
         == PSEUDOCODE ==
         description = newDescription;
          */
+        this.description = newDescription;
     }
 
     public void setDueDate(String newDueDate) {
@@ -71,6 +72,7 @@ public class Item {
         == PSEUDOCODE ==
         dueDate = newDueDate;
          */
+        this.dueDate = newDueDate;
     }
 
     public void setCompleted(boolean newCompleted) {
@@ -78,5 +80,6 @@ public class Item {
         == PSEUDOCODE ==
         completed = newCompleted;
          */
+        this.completed = newCompleted;
     }
 }

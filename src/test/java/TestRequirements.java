@@ -85,6 +85,9 @@ public class TestRequirements {
         item.setDescription("new description");
         assertEqual("new description", item.description);
          */
+        Item item = new Item("old description", "2021-10-10", false);
+        item.setDescription("new description");
+        Assertions.assertEquals("new description", item.getDescription());
     }
 
     @Test
@@ -95,6 +98,9 @@ public class TestRequirements {
         item.setDueDate("2021-11-11");
         assertEqual("2021-11-11", item.dueDate);
          */
+        Item item = new Item("something", "2021-10-10", false);
+        item.setDueDate("2021-11-11");
+        Assertions.assertEquals("2021-11-11", item.getDueDate());
     }
 
     @Test

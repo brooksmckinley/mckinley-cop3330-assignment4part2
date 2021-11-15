@@ -49,6 +49,7 @@ public class ListController {
         App.appList.addItem(item);
         VBox listItems = (VBox) Objects.requireNonNull(App.root)
                 .lookup("#listItems");
+        System.out.println(ItemView.createItem(item));
         listItems.getChildren().add(ItemView.createItem(item));
         textField.setText("");
         datePicker.setValue(null);

@@ -15,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import ucf.assignments.App;
 import ucf.assignments.models.Item;
+import ucf.assignments.views.ItemView;
 
 public class ItemController {
     private Item item;
@@ -34,17 +35,25 @@ public class ItemController {
 
     @FXML
     public void initialize() {
+        /*
+        == PSEUDOCODE ==
+        taskDescription = item.description;
+        dueDate = item.dueDate;
+        checkbox = item.completed;
+         */
         taskDescription.setText(item.getDescription());
         dueDate.setText(item.getDueDate());
         checkbox.setSelected(item.getCompleted());
     }
 
     @FXML
-    public void handleEditItem(Node target, int itemID) {
+    public void handleEditItem(ActionEvent event) {
         /*
         == PSEUDOCODE ==
         target.replace(ItemView.createEditableItem(target, itemID));
         */
+        ObservableList itemsList = ((VBox) self.getParent()).getChildren();
+        itemsList.set(itemsList.indexOf(self), ItemView.createEditableItem(this.item));
     }
 
     @FXML
@@ -56,18 +65,6 @@ public class ItemController {
          */
         App.appList.removeItem(this.item.getID());
         ((VBox) self.getParent()).getChildren().remove(self);
-    }
-
-    @FXML
-    public void handleSave(Node target, int itemID) {
-        /*
-        == PSEUDOCODE ==
-        description = target.textField.content;
-        dueDate = target.dueDateField.content;
-        newItem = new Item(itemID, description, dueDate);
-        appList.setItem(itemID, newItem);
-        target.replace(ItemView.createItem(newItem));
-         */
     }
 
     @FXML

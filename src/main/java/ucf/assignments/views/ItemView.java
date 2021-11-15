@@ -8,6 +8,7 @@ package ucf.assignments.views;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import ucf.assignments.App;
+import ucf.assignments.controllers.EditableListItemController;
 import ucf.assignments.controllers.ItemController;
 import ucf.assignments.models.Item;
 
@@ -23,9 +24,9 @@ public class ItemView {
         result.controller = new ItemController(item);
         return result;
          */
-        URL listItemResource = Objects.requireNonNull(App.class.getResource("/ListItem.fxml"));
+        URL listItemURL = Objects.requireNonNull(App.class.getResource("/ListItem.fxml"));
         try {
-            FXMLLoader loader = new FXMLLoader(listItemResource);
+            FXMLLoader loader = new FXMLLoader(listItemURL);
             loader.setController(new ItemController(item));
             return loader.load();
         } catch (IOException e) {
@@ -34,26 +35,21 @@ public class ItemView {
         return null;
     }
 
-    public static Node createEditableItem(int itemID) {
+    public static Node createEditableItem(Item item) {
         /*
         == PSEUDOCODE ==
-        result = new HBox();
-        checkBox = new Checkbox();
-        checkBox.onClick(ItemController.handleCheck(event, itemID));
-        result.add(checkBox);
-
-        result.add(new TextField());
-        result.add(new DatePicker());
-
-        saveButton = new Button("Save");
-        saveButton.onClick(ItemController.handleSave(result, itemID));
-        result.add(saveButton);
-
-        deleteButton = new Button("-");
-        deleteButton.onClick(ItemController.handleDelete(result, itemID));
-        result.add(deleteButton);
+        result = loadFromFXML("EditableListItem.fxml");
+        result.controller = new ItemController(item);
         return result;
          */
+        URL listItemURL = Objects.requireNonNull(App.class.getResource("/EditableListItem.fxml"));
+        try {
+            FXMLLoader loader = new FXMLLoader(listItemURL);
+            loader.setController(new EditableListItemController(item));
+            return loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

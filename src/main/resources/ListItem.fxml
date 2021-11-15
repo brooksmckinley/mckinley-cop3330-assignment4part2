@@ -19,7 +19,7 @@
             <Insets right="5.0" />
          </HBox.margin>
       </Label>
-      <Button alignment="TOP_LEFT" mnemonicParsing="false" text="Edit" />
+      <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleEditItem" text="Edit" />
       <Button mnemonicParsing="false" onAction="#handleDeleteButton" text="-" />
    </children>
    <padding>

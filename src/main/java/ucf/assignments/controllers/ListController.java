@@ -40,8 +40,10 @@ public class ListController {
         String description = textField.getText();
         String dueDate;
 
-        // Return and do nothing if the date is not valid
-        if (datePicker.getValue() == null) {
+        // Return and do nothing if the date is not valid or if the description is too long
+        if (datePicker.getValue() == null ||
+                description.length() > 256 ||
+                description.length() < 1) {
             return;
         } else {
             dueDate = datePicker.getValue().toString();

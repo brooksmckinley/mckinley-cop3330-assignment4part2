@@ -77,6 +77,10 @@ public class EditableListItemController {
         item.dueDate = datePicker;
         self.replace(ItemView.createItem(item));
          */
+        if (textField.getText().length() > 256 || textField.getText().length() < 1) {
+            // Do not allow the user to save if the user input exceeds the limits for an item.
+            return;
+        }
         item.setDescription(textField.getText());
         item.setDueDate(datePicker.getValue().toString());
         ObservableList<Node> itemsList = ((VBox) self.getParent()).getChildren();

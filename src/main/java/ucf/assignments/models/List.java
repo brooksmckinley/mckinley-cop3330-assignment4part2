@@ -6,6 +6,7 @@
 package ucf.assignments.models;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,14 +14,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class List {
-    private File file;
     private ArrayList<Item> items;
 
     // ASCII Record separator
-    private static String RECORD_SEPARATOR = "\\|";
+    private static String RECORD_SEPARATOR = "\u001E";
 
     public List(File file) {
-        this.file = file;
         this.items = new ArrayList<>();
     }
 
@@ -87,15 +86,15 @@ public class List {
         items.clear();
     }
 
-    public void saveList() {
+    public void saveList(File file) throws IOException {
         /*
         == PSEUDOCODE ==
-        if (file == null) {
-            throw Exception indicating no file exists;
-        }
         serialized = this.serialize();
         file.writeString(serialized);
          */
+        String serialized = this.serialize();
+        Files.writeString(file.toPath(), serialized);
+
     }
 
     public static List loadList(File file) {
@@ -193,11 +192,22 @@ public class List {
         /*
         == PSEUDOCODE ==
         for (item in items) {
-            result += id + | + description + | + dueDate + | + completed + \n;
+            result += id + RS + description + RS + dueDate + RS + completed + \n;
         }
         return result;
          */
-        return "";
+        StringBuilder result = new StringBuilder();
+        for (Item item : items) {
+            result.append(item.getID())
+                    .append(RECORD_SEPARATOR)
+                    .append(item.getDescription())
+                    .append(RECORD_SEPARATOR)
+                    .append(item.getDueDate())
+                    .append(RECORD_SEPARATOR)
+                    .append(item.getCompleted())
+                    .append('\n');
+        }
+        return result.toString();
     }
 
     private static List deserialize(String input) {

@@ -6,7 +6,7 @@
 <Menu mnemonicParsing="false" text="File" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.controllers.FileMenuController">
    <items>
       <MenuItem mnemonicParsing="false" onAction="#handleOpen" text="Open" />
-      <MenuItem mnemonicParsing="false" text="Save" />
-      <MenuItem mnemonicParsing="false" text="Quit" />
+      <MenuItem mnemonicParsing="false" onAction="#handleSave" text="Save" />
+      <MenuItem mnemonicParsing="false" onAction="#handleQuit" text="Quit" />
    </items>
 </Menu>

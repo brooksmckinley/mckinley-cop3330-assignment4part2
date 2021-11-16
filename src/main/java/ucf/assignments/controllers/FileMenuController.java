@@ -11,6 +11,7 @@ import javafx.stage.FileChooser;
 import ucf.assignments.App;
 import ucf.assignments.models.List;
 import java.io.File;
+import java.io.IOException;
 
 public class FileMenuController {
 
@@ -26,7 +27,6 @@ public class FileMenuController {
          */
         FileChooser dialog = new FileChooser();
         File file = dialog.showOpenDialog(App.stage);
-        System.out.println(file);
         App.appList = List.loadList(file);
         ViewMenuController.renderItems();
     }
@@ -36,15 +36,19 @@ public class FileMenuController {
     public void handleSave(ActionEvent event) {
         /*
         == PSEUDOCODE ==
-        appModel.getCurrentList().save();
-        catch (file not found or not defined) {
-            save = new FileSaveDialog();
-            dialog.onConfirm((path) -> {
-                appModel.getCurrentList().setFile(new File(path));
-                appModel.getCurrentList().save();
-            }
-        }
+        dialog = new FileSaveDialog();
+        file = dialog.show();
+        appList.saveList(file);
          */
+        FileChooser dialog = new FileChooser();
+        File file = dialog.showSaveDialog(App.stage);
+        try {
+            App.appList.saveList(file);
+        } catch (IOException e) {
+            // Print error to indicate that the file failed to save
+            e.printStackTrace();
+        }
+
     }
 
     @FXML
@@ -53,5 +57,6 @@ public class FileMenuController {
         == PSUEDOCODE ==
         exit(0); or whatever the java equivalent is
          */
+        System.exit(0);
     }
 }

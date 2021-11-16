@@ -11,7 +11,6 @@ import ucf.assignments.models.List;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class TestRequirements {
@@ -217,14 +216,19 @@ public class TestRequirements {
     }
 
     @Test
-    public void testSaveList() {
+    public void testSaveList() throws IOException {
         /*
         == PSEUDOCODE ==
         list.add(new Item(3, "some item", "2021-10-10", true));
-        list.setFile(new File("somefile.list"));
         list.saveList();
-        assertEqual("3|some item|2021-10-10|true", readFile("somefile.list"));
+        assertEqual("3|some item|2021-10-10|true", readFile("testSaveListFile.list"));
          */
+        List list = new List();
+        list.addItem(new Item(3, "some item", "2021-10-10", true));
+        File output = new File("saveListTestFile.list");
+        list.saveList(output);
+        Assertions.assertEquals("3\u001Esome item\u001E2021-10-10\u001Etrue\n",
+                Files.readString(output.toPath()));
     }
 
     @Test
@@ -239,7 +243,7 @@ public class TestRequirements {
         assertTrue(list.getItem(3).completed);
          */
         Files.writeString(new File("loadListTestFile.list").toPath(),
-                "3|some item|2021-10-10|true");
+                "3\u001Esome item\u001E2021-10-10\u001Etrue");
         List list = List.loadList(new File("loadListTestFile.list"));
         Assertions.assertNotNull(list.getItem(3));
         Assertions.assertEquals("some item", list.getItem(3).getDescription());

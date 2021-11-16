@@ -22,6 +22,7 @@ public class Item {
 
     public Item(int id, String description, String dueDate, boolean completed) {
         this.id = id;
+        lastID = Math.max(lastID, id + 1);
         this.description = description;
         this.dueDate = dueDate;
         this.completed = completed;

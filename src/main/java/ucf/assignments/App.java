@@ -19,10 +19,12 @@ public class App extends Application {
 
     public static List appList = new List();
     public static Parent root;
+    public static Stage stage;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/application.fxml")));
+        stage = primaryStage;
 
 
         Scene scene = new Scene(root, 800, 600);

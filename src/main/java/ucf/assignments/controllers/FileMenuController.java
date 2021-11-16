@@ -5,9 +5,12 @@
 
 package ucf.assignments.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
-import java.awt.event.ActionEvent;
+import javafx.stage.FileChooser;
+import ucf.assignments.App;
+import ucf.assignments.models.List;
+import java.io.File;
 
 public class FileMenuController {
 
@@ -16,16 +19,16 @@ public class FileMenuController {
         /*
         == PSEUDOCODE ==
         dialog = new FileOpenDialog();
-        dialog.onConfirm((path) -> {
-            newTab = ListView.createNewTab();
-            newList = List.loadList(path);
-            for (item in newList) {
-                newTab.add(ItemView.createItem(item));
-            }
-            newTab.select();
-        });
-        dialog.show();
+        file = dialog.show();
+        screen.clear();
+        appList = deserialize(readString(file));
+        screen.add(appList content);
          */
+        FileChooser dialog = new FileChooser();
+        File file = dialog.showOpenDialog(App.stage);
+        System.out.println(file);
+        App.appList = List.loadList(file);
+        ViewMenuController.renderItems();
     }
 
 

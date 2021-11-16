@@ -14,6 +14,7 @@ import ucf.assignments.App;
 import ucf.assignments.models.Item;
 import ucf.assignments.views.ItemView;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class ViewMenuController {
@@ -30,49 +31,63 @@ public class ViewMenuController {
     public void handleViewAllItems(ActionEvent event) {
         /*
         == PSEUDOCODE ==
-        screen.clearList();
-        for (item in appList.getAllItems()) {
-            screen.add(ItemView.createItem(item));
-        }
+        state = VIEW_ALL_ITEMS;
+        renderItems();
          */
-        ObservableList<Node> screen = getListItems();
         state = CurrentState.VIEW_ALL_ITEMS;
-        screen.clear();
-        for (Item item : App.appList.getAllItems()) {
-            screen.add(ItemView.createItem(item));
-        }
+        renderItems();
     }
 
     @FXML
     public void handleViewIncompleteItems(ActionEvent event) {
         /*
         == PSEUDOCODE ==
-        screen.clearList();
-        for (item in appList.getIncompleteItems()) {
-            screen.add(ItemView.createItem(item));
-        }
+        state = VIEW_INCOMPLETE_ITEMS;
+        renderItems();
          */
-        ObservableList<Node> screen = getListItems();
         state = CurrentState.VIEW_INCOMPLETE_ITEMS;
-        screen.clear();
-        for (Item item : App.appList.getIncompleteItems()) {
-            screen.add(ItemView.createItem(item));
-        }
+        renderItems();
     }
 
     @FXML
     public void handleViewCompletedItems(ActionEvent event) {
         /*
         == PSEUDOCODE ==
-        screen.clearList();
-        for (item in appList.getCompletedItems()) {
-            screen.add(ItemView.createItem(item));
+        state = VIEW_COMPLETED_ITEMS;
+        renderItems();
+         */
+        state = CurrentState.VIEW_COMPLETED_ITEMS;
+        renderItems();
+    }
+
+    public static void renderItems() {
+        /*
+        == PSEUDOCODE ==
+        if (current state is view all) {
+            items = getAllItems();
+        } else if (current state is view completed) {
+            items = getCompletedItems();
+        } else if (current state is get incomplete) {
+            items = getIncompleteItems();
+        }
+
+        screen.clear();
+        for (item in items) {
+            screen.add(item);
         }
          */
+        ArrayList<Item> items;
+        if (getCurrentState() == CurrentState.VIEW_ALL_ITEMS) {
+            items = App.appList.getAllItems();
+        } else if (getCurrentState() == CurrentState.VIEW_COMPLETED_ITEMS) {
+            items = App.appList.getCompletedItems();
+        } else {
+            items = App.appList.getIncompleteItems();
+        }
+
         ObservableList<Node> screen = getListItems();
-        state = CurrentState.VIEW_COMPLETED_ITEMS;
         screen.clear();
-        for (Item item : App.appList.getCompletedItems()) {
+        for (Item item : items) {
             screen.add(ItemView.createItem(item));
         }
     }

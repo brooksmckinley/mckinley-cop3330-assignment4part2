@@ -6,12 +6,18 @@
 package ucf.assignments.models;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class List {
     private File file;
     private ArrayList<Item> items;
+
+    // ASCII Record separator
+    private static String RECORD_SEPARATOR = "\\|";
 
     public List(File file) {
         this.file = file;
@@ -92,13 +98,20 @@ public class List {
          */
     }
 
-    public static List loadList(Path filePath) {
+    public static List loadList(File file) {
         /*
         == PSEUDOCODE ==
         fileString = readFile(filePath);
         return deserialize(fileString);
          */
-        return null;
+        try {
+            String fileString = Files.readString(file.toPath());
+            return deserialize(fileString);
+        } catch (IOException error) {
+            error.printStackTrace();
+            // Unable to read, open blank list
+            return new List();
+        }
     }
 
     public static List[] loadLists(Path[] filePaths) {
@@ -187,25 +200,41 @@ public class List {
         return "";
     }
 
-    private List deserialize(String input) {
+    private static List deserialize(String input) {
         /*
         == PSEUDOCODE ==
         for (line in input) {
-            if (first line) {
-                title = line
-            } else {
-                records = input.split('|');
-                throw Exception if records.length != 4
-                id = records[0];
-                description = records[1];
-                dueDate = records[2];
-                completed = records[3];
-                list.add(new Item(id, description, dueDate, completed));
-            }
+            records = input.split('|');
+            error if records.length != 4
+            id = records[0];
+            description = records[1];
+            dueDate = records[2];
+            completed = records[3];
+            list.add(new Item(id, description, dueDate, completed));
         }
         return new List(list);
          */
-        return null;
+        List result = new List();
+
+        for (String line : input.split("\n")) {
+            // Split at ASCII record separator character
+            String[] records = line.split(RECORD_SEPARATOR);
+            if (records.length != 4) {
+                // Unable to read, skip record
+                continue;
+            }
+            try {
+                int id = Integer.parseInt(records[0]);
+                String description = records[1];
+                String dueDate = records[2];
+                boolean completed = Boolean.parseBoolean(records[3]);
+                result.addItem(new Item(id, description, dueDate, completed));
+            } catch (Exception e) {
+                // Unable to parse, skip record
+                e.printStackTrace();
+            }
+        }
+        return result;
     }
 
 }

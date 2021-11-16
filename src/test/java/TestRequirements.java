@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 import ucf.assignments.models.Item;
 import ucf.assignments.models.List;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class TestRequirements {
@@ -224,7 +228,7 @@ public class TestRequirements {
     }
 
     @Test
-    public void testLoadList() {
+    public void testLoadList() throws IOException {
         /*
         == PSEUDOCODE ==
         writeFile("3|some item|2021-10-10|true", "someList.list");
@@ -234,6 +238,13 @@ public class TestRequirements {
         assertEqual("2021-10-10", list.getItem(3).dueDate);
         assertTrue(list.getItem(3).completed);
          */
+        Files.writeString(new File("loadListTestFile.list").toPath(),
+                "3|some item|2021-10-10|true");
+        List list = List.loadList(new File("loadListTestFile.list"));
+        Assertions.assertNotNull(list.getItem(3));
+        Assertions.assertEquals("some item", list.getItem(3).getDescription());
+        Assertions.assertEquals("2021-10-10", list.getItem(3).getDueDate());
+        Assertions.assertTrue(list.getItem(3).getCompleted());
     }
 
 }

@@ -69,6 +69,7 @@ package controllers {
         +void handleViewAllItems(ActionEvent event)
         +void handleViewIncompleteItems(ActionEvent event)
         +void handleViewCompletedItems(ActionEvent event)
+        +{static} void renderItems()
         +{static} CurrentState getCurrentState()
         #{static} ObservableList<Node> getListItems()
     }
@@ -80,6 +81,11 @@ package controllers {
     }
 
     ViewMenuController *-- ViewMenuController.CurrentState
+    ViewMenuController o-- FileMenuController
+    ViewMenuController o-- EditableListItemController
+    ViewMenuController o-- ItemController
+    ViewMenuController o-- ListController
+
 }
 
 'Models
@@ -130,8 +136,12 @@ List o-- ListController
 List o-- FileMenuController
 List o-- EditMenuController
 List o-- ItemController
+List o-- EditableListItemController
+List o-- ViewMenuController
+
 ItemView o-- ListController
 ItemView o-- ItemController
+ItemView o-- EditableListItemController
 
 App *-- List
 

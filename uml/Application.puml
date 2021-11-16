@@ -34,7 +34,7 @@ package controllers {
         #CheckBox checkBox
 
         +void initialize()
-        +void handleEditButton(ActionEvent event)
+        +void handleEditItem(ActionEvent event)
         +void handleDeleteButton(ActionEvent event)
         +void handleCheck(ActionEvent event)
     }
@@ -43,8 +43,8 @@ package controllers {
         -Item item
 
         #HBox self
-        #Label taskDescription
-        #Label dueDate
+        #TextField textField
+        #DatePicker datePicker
         #CheckBox checkBox
 
         +void initialize()
@@ -64,12 +64,12 @@ package controllers {
     }
 
     class ViewMenuController {
-
+        -{static} CurrentState state
 
         +void handleViewAllItems(ActionEvent event)
         +void handleViewIncompleteItems(ActionEvent event)
         +void handleViewCompletedItems(ActionEvent event)
-        #{static} CurrentState getCurrentState()
+        +{static} CurrentState getCurrentState()
         #{static} ObservableList<Node> getListItems()
     }
 
@@ -87,22 +87,19 @@ package controllers {
 package models {
 
     class List {
-        File file
-        ArrayList<Item> items
+        -ArrayList<Item> items
+        +{static} String RECORD_SEPARATOR
 
         +void addItem(Item toAdd)
         +Item getItem(int id)
-        +void setItem(int id, Item replacement)
-        +void setFile(File newFile)
         +void removeItem(int id)
+        +void clearList()
         +void saveList()
         {static} +List loadList(Path filePath)
 
         +ArrayList<Item> getAllItems()
         +ArrayList<Item> getIncompleteItems()
         +ArrayList<Item> getCompletedItems()
-
-        +void setTitle(String newTitle)
 
         -int getItemIndex(int id)
         -String serialize()
@@ -111,6 +108,7 @@ package models {
 
     class Item {
         int id
+        -{static} lastID
         String description
         String dueDate
         boolean completed
@@ -134,7 +132,6 @@ List o-- EditMenuController
 List o-- ItemController
 ItemView o-- ListController
 ItemView o-- ItemController
-ListView o-- FileMenuController
 
 App *-- List
 

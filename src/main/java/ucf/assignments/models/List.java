@@ -6,22 +6,15 @@
 package ucf.assignments.models;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class List {
     private ArrayList<Item> items;
 
-    // ASCII Record separator
+    // ASCII Record separator, convenient and underrated
     private static String RECORD_SEPARATOR = "\u001E";
-
-    public List(File file) {
-        this.items = new ArrayList<>();
-    }
 
     public List() {
         this.items = new ArrayList<>();
@@ -49,21 +42,6 @@ public class List {
         } else {
             return items.get(index);
         }
-    }
-
-    public void setItem(int id, Item replacement) {
-        /*
-        == PSEUDOCODE ==
-        index = getItemIndex(id);
-        items.set(index, replacement);
-         */
-    }
-
-    public void setFile(File newFile) {
-        /*
-        == PSEUDOCODE ==
-        this.file = newFile;
-         */
     }
 
     public void removeItem(int id) {
@@ -111,17 +89,6 @@ public class List {
             // Unable to read, open blank list
             return new List();
         }
-    }
-
-    public static List[] loadLists(Path[] filePaths) {
-        /*
-        == PSUEDOCODE ==
-        for (path in filePaths) {
-            result[i] = loadList(path);
-        }
-        return result;
-         */
-        return null;
     }
 
     public ArrayList<Item> getAllItems() {

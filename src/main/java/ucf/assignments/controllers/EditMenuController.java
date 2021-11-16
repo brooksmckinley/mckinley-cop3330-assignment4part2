@@ -13,18 +13,18 @@ import ucf.assignments.App;
 import java.util.Objects;
 
 public class EditMenuController {
+
     @FXML
     public void handleClearList() {
         /*
         == PSEUDOCODE ==
         appList.clearList();
-        for (itemView in visibleItems) {
-            visibleItems.remove(itemView);
-        }
+        visibleItems.clear();
          */
         App.appList.clearList();
         VBox listItems = (VBox) Objects.requireNonNull(App.root)
                 .lookup("#listItems");
         listItems.getChildren().clear();
     }
+
 }
